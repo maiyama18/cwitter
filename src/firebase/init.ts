@@ -4,22 +4,16 @@ import 'firebase/firestore';
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: 'tasks-hooks.firebaseapp.com',
-  databaseURL: 'https://tasks-hooks.firebaseio.com',
-  messagingSenderId: '830684755063',
-  projectId: 'tasks-hooks',
-  storageBucket: 'tasks-hooks.appspot.com',
+  authDomain: 'cwitter-6af40.firebaseapp.com',
+  databaseURL: 'https://cwitter-6af40.firebaseio.com',
+  projectId: 'cwitter-6af40',
+  storageBucket: 'cwitter-6af40.appspot.com',
+  messagingSenderId: '51484433207',
 };
 firebase.initializeApp(config);
 
 const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-const loginWithGoogle = () => {
-  firebase.auth().signInWithRedirect(provider);
-};
-const logoutFromGoogle = () => {
-  firebase.auth().signOut();
-};
+const oAuthProvider = new firebase.auth.GithubAuthProvider();
 
-export { firebase, firestore, loginWithGoogle, logoutFromGoogle };
+export { firebase, firestore, oAuthProvider };

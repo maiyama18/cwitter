@@ -10,7 +10,7 @@
     "jsx": "react",
 
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
 
     "strict": true,
 

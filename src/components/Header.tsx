@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Container, Menu } from 'semantic-ui-react';
+import { AuthButton } from './AuthButton';
 
 export const Header = () => {
   return (
@@ -13,6 +14,12 @@ export const Header = () => {
     >
       <Container>
         <Menu.Item fitted={'horizontally'}>title</Menu.Item>
+
+        <Menu.Menu position={'right'}>
+          <Menu.Item style={{ padding: 0 }}>
+            <AuthButton />
+          </Menu.Item>
+        </Menu.Menu>
       </Container>
     </Menu>
   );

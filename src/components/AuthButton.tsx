@@ -1,27 +1,30 @@
 import * as React from 'react';
-import { loginWithGoogle, logoutFromGoogle } from '../firebase/init';
+import { Dropdown, Icon, Image } from 'semantic-ui-react';
+import { firebase } from '../firebase/init';
+import { oAuthProvider } from '../firebase/init';
 import { AuthContext } from './App';
-const { useContext } = React;
 
 export const AuthButton = () => {
-  const auth = useContext(AuthContext);
+  const auth = React.useContext(AuthContext);
 
   if (auth.loading) {
-    return <div>Loading...</div>;
+    return <Icon name="spinner" loading={true} />;
   }
 
   if (auth.user != null) {
+    const icon = <Image avatar={true} src={auth.user.photoURL} style={{ height: '2rem', width: '2rem' }} />;
     return (
-      <div>
-        <button onClick={logoutFromGoogle}>logout</button>
-        <span>{auth.user.displayName}</span>
-      </div>
+      <Dropdown icon={icon}>
+        <Dropdown.Menu>
+          <Dropdown.Item text={'logout'} onClick={() => firebase.auth().signOut()} />
+        </Dropdown.Menu>
+      </Dropdown>
     );
   } else {
     return (
-      <div>
-        <button onClick={loginWithGoogle}>login</button>
-      </div>
+      <span onClick={() => firebase.auth().signInWithRedirect(oAuthProvider)} style={{ cursor: 'pointer' }}>
+        login <Icon name={'github'} />
+      </span>
     );
   }
 };
